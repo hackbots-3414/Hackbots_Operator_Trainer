@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://intro_scene.gd" id="1_pcefe"]
 
-[sub_resource type="Curve" id="Curve_eww05"]
+[sub_resource type="Curve" id="Curve_5t4et"]
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6oeyh"]
-curve_x = SubResource("Curve_eww05")
+curve_x = SubResource("Curve_5t4et")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wj2vq"]
 font_size = 36
@@ -38,7 +38,7 @@ offset_top = 250.0
 offset_right = 815.0
 offset_bottom = 488.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="start_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "START"
 
@@ -54,3 +54,11 @@ label_settings = SubResource("LabelSettings_cchju")
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
 visible = false
 layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "When the text for an action shows, 
+hit the correct button for that action on the controller, 
+as fast as possible"
+
+[connection signal="pressed" from="VBoxContainer/start_button" to="." method="_start_button_pressed"]
