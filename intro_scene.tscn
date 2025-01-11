@@ -1,3 +1,56 @@
-[gd_scene format=3 uid="uid://btmnhd6lojhqw"]
+[gd_scene load_steps=6 format=3 uid="uid://btmnhd6lojhqw"]
+
+[ext_resource type="Script" path="res://intro_scene.gd" id="1_pcefe"]
+
+[sub_resource type="Curve" id="Curve_eww05"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6oeyh"]
+curve_x = SubResource("Curve_eww05")
+
+[sub_resource type="LabelSettings" id="LabelSettings_wj2vq"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_cchju"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_pcefe")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -10.0
+offset_top = -14.0
+offset_right = 1176.0
+offset_bottom = 680.0
+texture = SubResource("CurveXYZTexture_6oeyh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 1149.0
+offset_bottom = 190.0
+alignment = 1
+
+[node name="title_text" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Hackbots operator trainer"
+label_settings = SubResource("LabelSettings_wj2vq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 345.0
+offset_top = 250.0
+offset_right = 815.0
+offset_bottom = 488.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="controller_connect_text" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "No Controller Connected!"
+label_settings = SubResource("LabelSettings_cchju")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
