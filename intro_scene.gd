@@ -24,4 +24,11 @@ func _process(delta: float) -> void:
 
 
 func _start_button_pressed() -> void:
+	Data.player_name = $HBoxContainer2/player_name_input.text
+	Data.file_name= Data.player_name + "-" + $HBoxContainer2/file_name_input.text + ".json"
 	get_tree().change_scene_to_file("res://MainScene.tscn")
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	Data.question_count = value
+	$slidername.text = str(value)+"/50"

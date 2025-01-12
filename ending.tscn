@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://v0allebpha1g"]
+
+[ext_resource type="Script" path="res://ending.gd" id="1_o64bg"]
+
+[sub_resource type="Curve" id="Curve_eww05"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_5aogo"]
+curve_x = SubResource("Curve_eww05")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hvnm0"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_tmm88"]
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o64bg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -17.0
+offset_right = 20.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CurveXYZTexture_5aogo")
+
+[node name="finished_label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 393.0
+offset_top = 32.0
+offset_right = 724.0
+offset_bottom = 87.0
+text = "Finished Training"
+label_settings = SubResource("LabelSettings_hvnm0")
+
+[node name="correct_questions" type="Label" parent="."]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 105.0
+offset_right = 734.0
+offset_bottom = 150.0
+text = "Correct Questions: 0/0"
+label_settings = SubResource("LabelSettings_tmm88")
+
+[node name="average_speed" type="Label" parent="."]
+offset_left = 391.0
+offset_top = 158.0
+offset_right = 736.0
+offset_bottom = 203.0
+text = "Average Speed: 0s"
+label_settings = SubResource("LabelSettings_tmm88")
+
+[node name="restart_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 444.0
+offset_right = 1018.0
+offset_bottom = 498.0
+text = "Restart"
+
+[node name="write_file_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 395.0
+offset_right = 1014.0
+offset_bottom = 426.0
+text = "Write File"
+
+[connection signal="pressed" from="restart_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="write_file_button" to="." method="_on_write_file_button_pressed"]
