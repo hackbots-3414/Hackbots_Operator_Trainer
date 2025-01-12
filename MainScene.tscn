@@ -8,7 +8,7 @@
 curve_x = SubResource("Curve_3gfvg")
 
 [sub_resource type="LabelSettings" id="LabelSettings_obvva"]
-font_size = 34
+font_size = 30
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lul3g"]
@@ -70,6 +70,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="temp_false_timer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [node name="temp_correct_timer" type="Timer" parent="."]
