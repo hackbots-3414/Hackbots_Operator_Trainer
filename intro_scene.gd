@@ -8,11 +8,11 @@ func _ready() -> void:
 	$HSlider.value = Data.question_count
 	for name in Data.get_all_actions():
 		$OptionButton.add_item(name)
+	Input.connect("joy_connection_changed",handle_controller_connection)
+	check_controller_status()
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func check_controller_status():
 	var controllers = Input.get_connected_joypads()
 	var controller_label:Label = $VBoxContainer/HBoxContainer2/controller_connect_text
 	var start_button:Button = $VBoxContainer/start_button
@@ -26,7 +26,20 @@ func _process(delta: float) -> void:
 		controller_settings.font_color = Color("#FF0000")
 		controller_label.text = "No Controller Connected!"
 		start_button.disabled = true
+	
 
+func handle_controller_connection(device:int, connected:bool):
+	var device_name = Input.get_joy_name(device)
+	if connected:
+		print("Controller %s (%s) connected" % [device_name, device])
+	else:
+		print("Controller %s discconnected" % [device])
+	check_controller_status()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
 func _start_button_pressed() -> void:
 	Data.player_name = $HBoxContainer2/player_name_input.text

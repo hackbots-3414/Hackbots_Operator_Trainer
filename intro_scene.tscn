@@ -65,7 +65,7 @@ alignment = 1
 
 [node name="controller_connect_text" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "No Controller Connected!"
+text = "Unknown controller status"
 label_settings = SubResource("LabelSettings_cchju")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
