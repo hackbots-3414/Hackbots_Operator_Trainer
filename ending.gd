@@ -30,4 +30,5 @@ func _on_write_file_button_pressed() -> void:
 
 
 func _on_restart_button_pressed() -> void:
+	Data.player_data = {}
 	get_tree().change_scene_to_file("res://intro_scene.tscn")

@@ -3,6 +3,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$HBoxContainer2/file_name_input.text = Data.file_name.split("-")[1].split(".")[0]
+	$HBoxContainer2/player_name_input.text = Data.player_name
+	$HSlider.value = Data.question_count
+	for name in Data.get_all_actions():
+		$OptionButton.add_item(name)
 	pass # Replace with function body.
 
 
@@ -32,3 +37,8 @@ func _start_button_pressed() -> void:
 func _on_h_slider_value_changed(value: float) -> void:
 	Data.question_count = value
 	$slidername.text = str(value)+"/50"
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	print(index)
+	Data.actions_file = Data.get_all_actions()[index]

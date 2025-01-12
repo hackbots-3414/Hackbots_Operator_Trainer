@@ -1,0 +1,34 @@
+{
+	"action_texts": {
+		"left_button": "Shoot Amp",
+		"up_button": "Shoot Subwoofer",
+		"right_button": "Spit Out Note",
+		"down_button": "Stow Elevator",
+		"dpad_up": "Elevator Up",
+		"dpad_down": "Reset Elevator",
+		"dpad_right": "Pivot Up",
+		"dpad_left": "Pivot Down",
+		"back": "Winch Up",
+		"start": "Winch Down",
+		"left_bumper": "Spit Out Flat",
+		"left_trigger": "Intake Note",
+		"right_bumper": "Eject Note",
+		"right_trigger": "Shoot Note"
+	},
+	"action_buttons":{
+		"amp": "xbox x, sony square",
+		"subwoofer_shoot": "xbox y, sony triangle",
+		"spit_out": "xbox b, sony circle",
+		"stow_elevator": "xbox a, sony cross",
+		"elevator_up": "dpad up",
+		"reset_elevator": "dpad down",
+		"pivot_up": "dpad right",
+		"pivot_down": "dpad left",
+		"winch_up": "back",
+		"winch_down": "start",
+		"spit_out_flat": "left bumper",
+		"intake": "left trigger",
+		"eject": "right bumper",
+		"shoot": "right trigger"
+	}
+}

@@ -17,39 +17,41 @@ var last_action = ""
 var start_seconds = 0
 var incorrect = false
 
-var action_texts = {
-	"amp": "Shoot Amp",
-	"subwoofer_shoot": "Shoot Subwoofer",
-	"spit_out": "Spit Out Note",
-	"stow_elevator": "Stow Elevator",
-	"elevator_up": "Elevator Up",
-	"reset_elevator": "Reset Elevator",
-	"pivot_up": "Pivot Up",
-	"pivot_down": "Pivot Down",
-	"winch_up": "Winch Up",
-	"winch_down": "Winch Down",
-	"spit_out_flat": "Spit Out Flat",
-	"intake": "Intake Note",
-	"eject": "Eject Note",
-	"shoot": "Shoot Note"
-}
+#var action_texts = {
+	#"amp": "Shoot Amp",
+	#"subwoofer_shoot": "Shoot Subwoofer",
+	#"spit_out": "Spit Out Note",
+	#"stow_elevator": "Stow Elevator",
+	#"elevator_up": "Elevator Up",
+	#"reset_elevator": "Reset Elevator",
+	#"pivot_up": "Pivot Up",
+	#"pivot_down": "Pivot Down",
+	#"winch_up": "Winch Up",
+	#"winch_down": "Winch Down",
+	#"spit_out_flat": "Spit Out Flat",
+	#"intake": "Intake Note",
+	#"eject": "Eject Note",
+	#"shoot": "Shoot Note"
+#}
+#
+#var action_buttons = {
+	#"amp": "xbox x, sony square",
+	#"subwoofer_shoot": "xbox y, sony triangle",
+	#"spit_out": "xbox b, sony circle",
+	#"stow_elevator": "xbox a, sony cross",
+	#"elevator_up": "dpad up",
+	#"reset_elevator": "dpad down",
+	#"pivot_up": "dpad right",
+	#"pivot_down": "dpad left",
+	#"winch_up": "back",
+	#"winch_down": "start",
+	#"spit_out_flat": "left bumper",
+	#"intake": "left trigger",
+	#"eject": "right bumper",
+	#"shoot": "right trigger"
+#}
 
-var action_buttons = {
-	"amp": "xbox x, sony square",
-	"subwoofer_shoot": "xbox y, sony triangle",
-	"spit_out": "xbox b, sony circle",
-	"stow_elevator": "xbox a, sony cross",
-	"elevator_up": "dpad up",
-	"reset_elevator": "dpad down",
-	"pivot_up": "dpad right",
-	"pivot_down": "dpad left",
-	"winch_up": "back",
-	"winch_down": "start",
-	"spit_out_flat": "left bumper",
-	"intake": "left trigger",
-	"eject": "right bumper",
-	"shoot": "right trigger"
-}
+var action_texts = Data.load_actions()
 
 var data = []
 
@@ -111,9 +113,9 @@ func incorrect_or_timeout():
 	showing_correct = true
 	$error_label.visible = true
 	if incorrect:
-		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [action_buttons.get(last_action), action_buttons.get(current_action)]
+		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [last_action, current_action]
 	else:
-		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[action_buttons.get(current_action), action_texts.get(current_action)]
+		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[current_action, action_texts.get(current_action)]
 	incorrect = false
 	$temp_false_timer.start()
 
