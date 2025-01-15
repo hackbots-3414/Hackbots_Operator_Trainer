@@ -110,13 +110,27 @@ offset_top = 501.0
 offset_right = 931.0
 offset_bottom = 528.0
 
-[node name="Label" type="Label" parent="."]
+[node name="actions_label" type="Label" parent="."]
 offset_left = 669.0
 offset_top = 502.0
 offset_right = 778.0
 offset_bottom = 525.0
 text = "Actions config:"
 
+[node name="vibration_label" type="Label" parent="."]
+offset_left = 304.0
+offset_top = 501.0
+offset_right = 384.0
+offset_bottom = 524.0
+text = "Vibration: "
+
+[node name="vibration_check" type="CheckBox" parent="."]
+offset_left = 390.0
+offset_top = 502.0
+offset_right = 414.0
+offset_bottom = 526.0
+
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/start_button" to="." method="_start_button_pressed"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="vibration_check" to="." method="_on_vibration_check_pressed"]

@@ -90,7 +90,8 @@ func correct():
 	running = false
 	$time_out_timer.wait_time = 5
 	print("Correct action")
-	Input.start_joy_vibration(0, 0, 0.5, 0.5)
+	if Data.vibration:
+		Input.start_joy_vibration(0, 0, 0.5, 0.5)
 	$temp_correct_timer.start()
 
 func start_first_time():
@@ -138,7 +139,8 @@ func run():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Input.start_joy_vibration(0, 1, 1, 0.5)
+	if Data.vibration:
+		Input.start_joy_vibration(0, 1, 1, 0.5)
 	#time_to_start = SceneTree.create_timer(3.0)
 	time_to_start.start()
 	time_to_start.connect("timeout", start_first_time)

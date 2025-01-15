@@ -10,6 +10,8 @@ var file_name = "test-last.json"
 
 var actions_file = "2024.json"
 
+var vibration = false
+
 func get_all_actions():
 	return DirAccess.get_files_at("res://configs")
 
