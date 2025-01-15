@@ -17,40 +17,6 @@ var last_action = ""
 var start_seconds = 0
 var incorrect = false
 
-#var action_texts = {
-	#"amp": "Shoot Amp",
-	#"subwoofer_shoot": "Shoot Subwoofer",
-	#"spit_out": "Spit Out Note",
-	#"stow_elevator": "Stow Elevator",
-	#"elevator_up": "Elevator Up",
-	#"reset_elevator": "Reset Elevator",
-	#"pivot_up": "Pivot Up",
-	#"pivot_down": "Pivot Down",
-	#"winch_up": "Winch Up",
-	#"winch_down": "Winch Down",
-	#"spit_out_flat": "Spit Out Flat",
-	#"intake": "Intake Note",
-	#"eject": "Eject Note",
-	#"shoot": "Shoot Note"
-#}
-#
-#var action_buttons = {
-	#"amp": "xbox x, sony square",
-	#"subwoofer_shoot": "xbox y, sony triangle",
-	#"spit_out": "xbox b, sony circle",
-	#"stow_elevator": "xbox a, sony cross",
-	#"elevator_up": "dpad up",
-	#"reset_elevator": "dpad down",
-	#"pivot_up": "dpad right",
-	#"pivot_down": "dpad left",
-	#"winch_up": "back",
-	#"winch_down": "start",
-	#"spit_out_flat": "left bumper",
-	#"intake": "left trigger",
-	#"eject": "right bumper",
-	#"shoot": "right trigger"
-#}
-
 var action_texts = Data.load_actions()
 
 var data = []
@@ -71,7 +37,7 @@ func round_place(num,places):
 func handle_input(action:String):
 	if action == "" or not action in action_texts.keys():
 		return
-	print(action)
+	#print(action)
 	if running:
 		last_action = action
 		var time = $time_out_timer.time_left
