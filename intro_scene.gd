@@ -36,7 +36,6 @@ func handle_controller_connection(device:int, connected:bool):
 		print("Controller %s discconnected" % [device])
 	check_controller_status()
 
-
 func _on_vibration_check_pressed() -> void:
 	Data.vibration = $vibration_check.button_pressed
 
@@ -49,11 +48,9 @@ func _start_button_pressed() -> void:
 	Data.file_name= Data.player_name + "-" + $HBoxContainer2/file_name_input.text + ".json"
 	get_tree().change_scene_to_file("res://MainScene.tscn")
 
-
 func _on_h_slider_value_changed(value: float) -> void:
 	Data.question_count = value
 	$slidername.text = str(value)+"/50"
-
 
 func _on_option_button_item_selected(index: int) -> void:
 	print(index)
