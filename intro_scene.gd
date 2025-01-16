@@ -38,7 +38,7 @@ func handle_controller_connection(device:int, connected:bool):
 
 
 func _on_vibration_check_pressed() -> void:
-	Data.vibration = $vibration_check.toggled
+	Data.vibration = $vibration_check.button_pressed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
