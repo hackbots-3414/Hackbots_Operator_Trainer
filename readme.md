@@ -32,3 +32,6 @@ back
 start
 
 The <direction>_button bindings are for ABXY
+
+## Images
+![image of intro screen](/images/intro_screen.png)
