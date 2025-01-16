@@ -6,8 +6,8 @@ func _ready() -> void:
 	$HBoxContainer2/file_name_input.text = Data.file_name.split("-")[1].split(".")[0]
 	$HBoxContainer2/player_name_input.text = Data.player_name
 	$HSlider.value = Data.question_count
-	for name in Data.get_all_actions():
-		$OptionButton.add_item(name)
+	for action in Data.get_all_actions():
+		$OptionButton.add_item(action)
 	Input.connect("joy_connection_changed",handle_controller_connection)
 	check_controller_status()
 	pass # Replace with function body.
@@ -41,7 +41,7 @@ func _on_vibration_check_pressed() -> void:
 	Data.vibration = $vibration_check.button_pressed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _start_button_pressed() -> void:
