@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Data="*res://data.gd"
+BindingNames="*res://binding_names.gd"
 
 [display]
 
