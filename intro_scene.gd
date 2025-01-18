@@ -12,13 +12,15 @@ func _ready() -> void:
 	check_controller_status()
 	pass # Replace with function body.
 
-func check_controller_status():
+func check_controller_status(device: int = 0 ):
 	var controllers = Input.get_connected_joypads()
 	var controller_label:Label = $VBoxContainer/HBoxContainer2/controller_connect_text
 	var start_button:Button = $VBoxContainer/start_button
 	var controller_settings = controller_label.label_settings
 	
 	if len(controllers) > 0:
+		var device_name = Input.get_joy_name(device)
+		BindingNames.set_bindings_for_controller_type(device_name)
 		controller_settings.font_color = Color("#00FF00")
 		controller_label.text = "Controller Connected!"
 		start_button.disabled = false
@@ -34,7 +36,7 @@ func handle_controller_connection(device:int, connected:bool):
 		print("Controller %s (%s) connected" % [device_name, device])
 	else:
 		print("Controller %s discconnected" % [device])
-	check_controller_status()
+	check_controller_status(device)
 
 func _on_vibration_check_pressed() -> void:
 	Data.vibration = $vibration_check.button_pressed

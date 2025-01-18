@@ -79,9 +79,9 @@ func incorrect_or_timeout():
 	showing_correct = true
 	$error_label.visible = true
 	if incorrect:
-		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [last_action, current_action]
+		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [BindingNames.get_binding_from_action(last_action), BindingNames.get_binding_from_action(current_action)]
 	else:
-		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[current_action, action_texts.get(current_action)]
+		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[BindingNames.get_binding_from_action(current_action), action_texts.get(current_action)]
 	incorrect = false
 	$temp_false_timer.start()
 

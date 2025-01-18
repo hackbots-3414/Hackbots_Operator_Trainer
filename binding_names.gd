@@ -48,11 +48,12 @@ func set_bindings_for_controller_type(controller_name: String):
 			_binding_name = name
 			break
 	_modify_bindings()
-	pass
 
 func _load_bindings_file(file_name: String):
 	print("Loading file %s" % file_name)
-	pass
+	var file = FileAccess.open("res://controllers/%s" % file_name, FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	return data.get("binding-names")
 
 func _modify_bindings():
 	if _binding_name == "default":
@@ -60,9 +61,18 @@ func _modify_bindings():
 		return
 	var file_name = _binding_name+".json"
 	var file_data = _load_bindings_file(file_name)
+	print("Starting binding modification")
+	for binding in file_data.keys():
+		if binding in _controller_bindings.keys():
+			_controller_bindings[binding] = file_data[binding]
+		else:
+			print("Action name %s unknown!" % binding)
+	print("Binding modification finished")
+	
 	
 
 func get_binding_from_action(action: String) -> String:
-	return action
+	### Returns the correct binding name based on the action name
+	return _controller_bindings[action]
 	pass
 	
