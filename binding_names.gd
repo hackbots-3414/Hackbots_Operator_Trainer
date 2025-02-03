@@ -23,7 +23,12 @@ var _default_binding_names = {
 	"up_button": "Up Button",
 	"right_button": "Right Button",
 	"down_button": "Down Button",
-	"left_button": "Left Button"
+	"left_button": "Left Button",
+	"left_stick_press": "Left stick press",
+	"right_stick_press": "Right stick press",
+	"share": "Share",
+	"home": "Home",
+	"touchpad": "Touchpad"
 }
 
 var _controller_bindings = {}
