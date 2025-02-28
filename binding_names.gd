@@ -28,7 +28,11 @@ var _default_binding_names = {
 	"right_stick_press": "Right stick press",
 	"share": "Share",
 	"home": "Home",
-	"touchpad": "Touchpad"
+	"touchpad": "Touchpad",
+	"left_joystick_up":"Left Joystick Up",
+	"left_joystick_down":"Left Joystick Down",
+	"right_joystick_up":"Right Joystick Up",
+	"right_joystick_down":"Right Joystick Down",
 }
 
 var _controller_bindings = {}

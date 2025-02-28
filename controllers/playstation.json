@@ -4,6 +4,7 @@
 		"up_button":"Triangle",
 		"left_button":"Square",
 		"right_button":"Circle",
-		"down_button":"Cross"
+		"down_button":"Cross",
+		"home":"PS button"
 	}
 }

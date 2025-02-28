@@ -95,6 +95,7 @@ func handle_input(action):
 func _input(event: InputEvent) -> void:
 	#print(event.as_text())
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		#print(event.as_text())
 		var action = get_action_from_input()
 		last_actions += action
 		ticker = 10

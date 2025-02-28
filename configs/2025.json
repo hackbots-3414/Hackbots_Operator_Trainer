@@ -17,6 +17,12 @@
 		"right_bumper":"Right Intake",
 		"back":"Climb Ready",
 		"start":"Climb",
+		"home,left_joystick_up":"Manual Elevator Up",
+		"home,left_joystick_down":"Manual Elevator Down",
+		"home,right_joystick_up":"Manual Pivot Up",
+		"home,right_joystick_down":"Manual Pivot Down",
+		"home,left_bumper":"Manual Intake",
+		"home,left_trigger":"Manual Spit Piece"
 		
 	}
 }

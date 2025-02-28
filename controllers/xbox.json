@@ -4,6 +4,7 @@
 		"up_button":"Y",
 		"left_button":"X",
 		"right_button":"B",
-		"down_button":"A"
+		"down_button":"A",
+		"home":"Xbox"
 	}
 }
