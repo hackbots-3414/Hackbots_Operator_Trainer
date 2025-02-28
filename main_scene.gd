@@ -70,7 +70,7 @@ func handle_input(action):
 
 
 func _input(event: InputEvent) -> void:
-	print(event.as_text())
+	#print(event.as_text())
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		var action = get_action_from_input(event)
 		handle_input(action)
