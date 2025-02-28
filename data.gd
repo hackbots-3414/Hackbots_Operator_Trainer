@@ -8,7 +8,7 @@ var question_count = 20
 
 var file_name = "test-last.json"
 
-var actions_file = "test.json"
+@export var actions_file:String = "2025.json"
 
 var vibration = false
 

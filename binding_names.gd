@@ -48,11 +48,18 @@ func set_bindings_for_controller_type(controller_name: String):
 	var names = _get_clean_bindings_names()
 	_controller_bindings = _default_binding_names
 	for name in names:
-		if controller_name.containsn(name):
-			print("Controller type found, %s" % name)
-			_binding_name = name
-			break
+		var possible_names = _get_possible_controller_names(name)
+		for possible_name in possible_names:
+			if controller_name.containsn(possible_name):
+				print("Controller type found, %s (%s)" % [possible_name, name])
+				_binding_name = name
+				break
 	_modify_bindings()
+	
+func _get_possible_controller_names(file_name: String):
+	var file = FileAccess.open("res://controllers/%s.json" % file_name, FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	return data.get("possible-names")
 
 func _load_bindings_file(file_name: String):
 	print("Loading file %s" % file_name)

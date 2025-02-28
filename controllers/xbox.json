@@ -1,4 +1,5 @@
 {
+	"possible-names":["xbox", "xInput", "xinput"],
 	"binding-names": {
 		"up_button":"Y",
 		"left_button":"X",

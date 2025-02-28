@@ -83,11 +83,11 @@ func handle_input(action):
 		curr_action.sort()
 		if hatred_action == curr_action:
 			$time_out_timer.stop()
-			#data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":true})
+			data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":true})
 			correct()
 		else:
 			$time_out_timer.stop()
-			#data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":false})
+			data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":false})
 			incorrect = true
 			incorrect_or_timeout()
 
@@ -97,6 +97,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		var action = get_action_from_input()
 		last_actions += action
+		ticker = 10
 		#handle_input(action)
 
 func set_new_action():
@@ -135,7 +136,7 @@ func incorrect_or_timeout():
 	showing_correct = true
 	$error_label.visible = true
 	if incorrect:
-		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [_get_binding_names(last_action), _figure_out_binding_names(current_action)]
+		$error_label.text = "You pressed %s instead of %s!" % [_get_binding_names(last_action), _figure_out_binding_names(current_action)]
 	else:
 		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[_figure_out_binding_names(current_action), action_texts.get(current_action)]
 	incorrect = false
@@ -227,7 +228,7 @@ func _process(delta: float) -> void:
 	if running:
 		ticker += 1
 		#var gaming = get_action_from_input()
-		if ticker >= 15:
+		if ticker >= 20:
 			ticker = 0
 			handle_input(last_actions)
 			last_actions = []

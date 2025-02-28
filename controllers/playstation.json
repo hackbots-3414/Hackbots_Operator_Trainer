@@ -1,4 +1,5 @@
 {
+	"possible-names":["playstation", "PS5", "PS4", "PS"],
 	"binding-names": {
 		"up_button":"Triangle",
 		"left_button":"Square",

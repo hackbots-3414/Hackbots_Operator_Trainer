@@ -8,6 +8,8 @@ func _ready() -> void:
 	$HSlider.value = Data.question_count
 	for action in Data.get_all_actions():
 		$OptionButton.add_item(action)
+	$OptionButton.select(Data.get_all_actions().find(Data.actions_file))
+	$vibration_check.button_pressed = Data.vibration
 	Input.connect("joy_connection_changed",handle_controller_connection)
 	check_controller_status()
 	pass # Replace with function body.

@@ -29,7 +29,7 @@ offset_right = 861.0
 offset_bottom = 574.0
 max_value = 50.0
 value = 20.0
-tick_count = 10
+tick_count = 6
 
 [node name="slidername" type="Label" parent="."]
 offset_left = 874.0
