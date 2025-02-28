@@ -25,11 +25,13 @@ var actions = InputMap.get_actions()
 
 var processed_actions = []
 
+var last_actions = []
+
 # I don't like this :(
-func get_action_from_input(input):
+func get_action_from_input():
 	var pressed = []
 	for action in actions:
-		if input.is_action_pressed(action):
+		if Input.is_action_pressed(action):
 			pressed.append(action)
 	return pressed
 
@@ -42,23 +44,44 @@ func check_actions(action_list):
 		if action not in processed_actions:
 			return false
 	return true
-	
+
+var action_real = []
+
+
 func handle_input(action):
 	#if action == "" or not action in action_texts.keys():
 		#return
-	if action == [] or not check_actions(action):
+		
+	if ($time_out_timer.wait_time - $time_out_timer.time_left) < 0.2:
 		return
 		
-	print(action)
+	action_real = []
+	for act in action:
+		if act not in action_real:
+			action_real.append(act.to_lower())
+	last_actions = []
+	
+	if action_real == [] or not check_actions(action_real):
+		return
+		
+	print(action_real)
 	if running:
-		last_action = action
+		last_action = action_real
 		var time = $time_out_timer.time_left
-		var temp_action = ""
-		if len(action) > 1:
-			temp_action = ",".join(action)
+		var hatred_action = action_real
+		hatred_action.sort()
+		#action.sort()
+		#if len(hatred_action) > 1:
+			#temp_action = ",".join(hatred_action)
+		#else:
+			#temp_action = hatred_action[0]
+		var curr_action = []
+		if "," in current_action:
+			curr_action = Array(current_action.split(","))
 		else:
-			temp_action = action
-		if temp_action == current_action:
+			curr_action = [current_action]
+		curr_action.sort()
+		if hatred_action == curr_action:
 			$time_out_timer.stop()
 			#data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":true})
 			correct()
@@ -72,8 +95,9 @@ func handle_input(action):
 func _input(event: InputEvent) -> void:
 	#print(event.as_text())
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		var action = get_action_from_input(event)
-		handle_input(action)
+		var action = get_action_from_input()
+		last_actions += action
+		#handle_input(action)
 
 func set_new_action():
 	var keys = action_texts.keys()
@@ -90,6 +114,17 @@ func after_showing_correct():
 func reset_text():
 	$main_label.text = "Wait"
 
+func _get_binding_names(actions):
+	var temp = []
+	for action in actions:
+		temp.append(BindingNames.get_binding_from_action(action))
+	return "+".join(temp)
+
+func _figure_out_binding_names(actions):
+	if "," in actions:
+		return _get_binding_names(actions.split(","))
+	return BindingNames.get_binding_from_action(actions)
+
 func incorrect_or_timeout():
 	reset_text()
 	running = false
@@ -100,9 +135,9 @@ func incorrect_or_timeout():
 	showing_correct = true
 	$error_label.visible = true
 	if incorrect:
-		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [BindingNames.get_binding_from_action(last_action), BindingNames.get_binding_from_action(current_action)]
+		$error_label.text = "Incorrect! You pressed %s instead of %s!" % [_get_binding_names(last_action), _figure_out_binding_names(current_action)]
 	else:
-		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[BindingNames.get_binding_from_action(current_action), action_texts.get(current_action)]
+		$error_label.text = "Ran out of time!\nYou need to press %s for action \"%s\"!" %[_figure_out_binding_names(current_action), action_texts.get(current_action)]
 	incorrect = false
 	$temp_false_timer.start()
 
@@ -185,9 +220,17 @@ func _ready() -> void:
 	
 	pass # Replace with function body.
 
+var ticker = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if running:
+		ticker += 1
+		#var gaming = get_action_from_input()
+		if ticker >= 15:
+			ticker = 0
+			handle_input(last_actions)
+			last_actions = []
 	#print("process")
 	if running and started:
 		time_label.text = str(round_place(($time_out_timer.wait_time - $time_out_timer.time_left), 3)) + "s"
