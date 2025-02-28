@@ -23,36 +23,54 @@ var data = []
 
 var actions = InputMap.get_actions()
 
+var processed_actions = []
+
 # I don't like this :(
-func get_action_from_input(input:InputEvent):
+func get_action_from_input(input):
+	var pressed = []
 	for action in actions:
 		if input.is_action_pressed(action):
-			return action
-	return ""
+			pressed.append(action)
+	return pressed
 
 # From https://forum.godotengine.org/t/how-to-round-to-a-specific-decimal-place/27552
 func round_place(num,places):
 	return (round(num*pow(10,places))/pow(10,places))
 	
-func handle_input(action:String):
-	if action == "" or not action in action_texts.keys():
+func check_actions(action_list):
+	for action in action_list:
+		if action not in processed_actions:
+			return false
+	return true
+	
+func handle_input(action):
+	#if action == "" or not action in action_texts.keys():
+		#return
+	if action == [] or not check_actions(action):
 		return
-	#print(action)
+		
+	print(action)
 	if running:
 		last_action = action
 		var time = $time_out_timer.time_left
-		if action == current_action:
+		var temp_action = ""
+		if len(action) > 1:
+			temp_action = ",".join(action)
+		else:
+			temp_action = action
+		if temp_action == current_action:
 			$time_out_timer.stop()
-			data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":true})
+			#data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":true})
 			correct()
 		else:
 			$time_out_timer.stop()
-			data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":false})
+			#data.append({"number":current_question, "action":current_action, "time":$time_out_timer.wait_time - time, "correct":false})
 			incorrect = true
 			incorrect_or_timeout()
 
 
 func _input(event: InputEvent) -> void:
+	print(event.as_text())
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		var action = get_action_from_input(event)
 		handle_input(action)
@@ -75,7 +93,10 @@ func reset_text():
 func incorrect_or_timeout():
 	reset_text()
 	running = false
-	print("Incorrect action, inputed "+last_action+" instead of "+current_action)
+	#print("Incorrect action, inputed "+last_action+" instead of "+current_action)
+	print("Incorrect action")
+	print(last_action)
+	print(current_action)
 	showing_correct = true
 	$error_label.visible = true
 	if incorrect:
@@ -136,11 +157,22 @@ func run():
 	running = true
 	set_new_action()
 	$time_out_timer.start()
+	
+	
+func process_actions():
+	var temp = action_texts.keys()
+	for temp2 in temp:
+		if "," not in temp2:
+			processed_actions.append(temp2)
+		else:
+			var part2 = temp2.split(",")
+			processed_actions = processed_actions + Array(part2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Data.vibration:
 		Input.start_joy_vibration(0, 1, 1, 0.5)
+	process_actions()
 	#time_to_start = SceneTree.create_timer(3.0)
 	time_to_start.start()
 	time_to_start.connect("timeout", start_first_time)
@@ -159,6 +191,8 @@ func _process(delta: float) -> void:
 	#print("process")
 	if running and started:
 		time_label.text = str(round_place(($time_out_timer.wait_time - $time_out_timer.time_left), 3)) + "s"
+	#var action = get_action_from_input()
+	#handle_input(action)
 	pass
 
 
